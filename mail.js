@@ -7,13 +7,19 @@ let browser = new swd.Builder();
 let tab = browser.forBrowser("firefox").build();
   
 // Get the credentials from the JSON file
-let {email, pass} = require("./credential.json");
+let {email, pass, username} = require("./credential.json");
   
 // Step 1 - Opening the geeksforgeeks sign in page
 let tabToOpen =
     tab.get("https://mail.google.com");
+
+
  function fE(arg){
     return tab.findElement(swd.By.xpath(arg));
+}
+
+function gEC(arg){
+    return tab.findElement(swd.By.css(arg));
 }
     tabToOpen
     .then(function () {
@@ -37,12 +43,32 @@ let tabToOpen =
         //tab.findElement(swd.By.xpath('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span')).click();
         fE('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span').click();
     })
-    // .then(function(){
-        
-    //     tab.findElement(swd.By.css(".whsOnd.zHQkBf")).sendKeys(pass);
-    // })
+    
     .then(function(){
         setTimeout(() => {
             tab.findElement(swd.By.css(".whsOnd.zHQkBf")).sendKeys(pass);
-        }, 4000);
+        }, 2000);
     })
+    .then(function(){
+        setTimeout(() =>{
+            fE('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span').click();
+        }, 3500);
+        // /html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span
+        // /html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button/span
+    })
+    .then(function(){
+        setTimeout(() => {
+            fE('/html/body/div[7]/div[3]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]').click();
+        }, 10000);
+    })
+    .then(function(){
+        setTimeout(() => {
+           tab.findElement('#:dw').sendKeys(username);
+        }, 11000);
+    })
+
+
+    //*[@id=":dw"]
+
+
+    //*[@id=":dw"]
