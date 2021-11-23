@@ -72,8 +72,11 @@ tabToOpen
         let promiseClickSignIn = signInBtn.click();
         return promiseClickSignIn;
     })
+    .then(function() {
+        tab.findElement(swd.By.xpath(`/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div/div/div[1]/ul/li/div/a/div[1]/div[2]/div/div/div/div/span/span`)).click();
+    })
     .then(function () {
-        console.log("Successfully signed in GEEKSFORGEEKS!");
+        
     })
     .catch(function (err) {
         console.log("Error ", err, " occurred!");
